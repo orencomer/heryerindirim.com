@@ -22,5 +22,13 @@ namespace heryerindirim.com.Data
             // For example, you can rename the ASP.NET Identity table names and more.
             // Add your customizations after calling base.OnModelCreating(builder);
         }
+
+        public DbSet<heryerindirim.com.Models.Member> Member { get; set; }
+
+        public DbSet<heryerindirim.com.Models.Campaign> Campaign { get; set; }
+
+        public DbSet<heryerindirim.com.Models.Company> Company { get; set; }
+
+        public DbSet<heryerindirim.com.Models.Product> Product { get; set; }
     }
 }
