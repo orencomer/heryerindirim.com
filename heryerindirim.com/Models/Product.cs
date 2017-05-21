@@ -11,14 +11,11 @@ namespace heryerindirim.com.Models
         public int ProductId { get; set; }
         [Required]
         [Display(Name = "Ürün Fiyatı")]
-        [StringLength(200)]
         public int ProductPrice { get; set; }
         [Required]
         [Display(Name = "İndirimli Ürün Fiyatı")]
-        [StringLength(200)]
         public int DiscountedPrice { get; set; }
         [Display(Name = "Stok Adeti")]
-        [StringLength(200)]
         public int ProductStockCount { get; set; }
         [Required]
         [Display(Name = "Ürün Kategorisi")]

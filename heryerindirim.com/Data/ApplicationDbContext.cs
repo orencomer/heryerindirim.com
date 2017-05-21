@@ -23,7 +23,6 @@ namespace heryerindirim.com.Data
             // Add your customizations after calling base.OnModelCreating(builder);
         }
 
-        public DbSet<heryerindirim.com.Models.Member> Member { get; set; }
 
         public DbSet<heryerindirim.com.Models.Campaign> Campaign { get; set; }
 

@@ -6,12 +6,13 @@ using Microsoft.EntityFrameworkCore.Migrations;
 using heryerindirim.com.Data;
 using heryerindirim.com.Models;
 
-namespace heryerindirim.com.Data.Migrations
+namespace heryerindirim.com.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20170521154251_AllMigration")]
+    partial class AllMigration
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
             modelBuilder
                 .HasAnnotation("ProductVersion", "1.1.2")
@@ -114,35 +115,6 @@ namespace heryerindirim.com.Data.Migrations
                     b.ToTable("Company");
                 });
 
-            modelBuilder.Entity("heryerindirim.com.Models.Member", b =>
-                {
-                    b.Property<int>("MemberId")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<int>("CampaignCount")
-                        .HasMaxLength(200);
-
-                    b.Property<string>("FullName")
-                        .IsRequired()
-                        .HasMaxLength(200);
-
-                    b.Property<string>("Logo")
-                        .IsRequired();
-
-                    b.Property<char>("Password");
-
-                    b.Property<int>("ProductCount")
-                        .HasMaxLength(200);
-
-                    b.Property<string>("UserName")
-                        .IsRequired()
-                        .HasMaxLength(200);
-
-                    b.HasKey("MemberId");
-
-                    b.ToTable("Member");
-                });
-
             modelBuilder.Entity("heryerindirim.com.Models.Product", b =>
                 {
                     b.Property<int>("ProductId")
@@ -152,16 +124,13 @@ namespace heryerindirim.com.Data.Migrations
 
                     b.Property<DateTime>("DiscountDate");
 
-                    b.Property<int>("DiscountedPrice")
-                        .HasMaxLength(200);
+                    b.Property<int>("DiscountedPrice");
 
                     b.Property<string>("ProductImage");
 
-                    b.Property<int>("ProductPrice")
-                        .HasMaxLength(200);
+                    b.Property<int>("ProductPrice");
 
-                    b.Property<int>("ProductStockCount")
-                        .HasMaxLength(200);
+                    b.Property<int>("ProductStockCount");
 
                     b.HasKey("ProductId");
 

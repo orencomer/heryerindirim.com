@@ -1,19 +1,39 @@
 ﻿@model RegisterViewModel
 @{
-    ViewData["Title"] = "Register";
+    ViewData["Title"] = "Kayıt Ol";
 }
 
-<h2>@ViewData["Title"].</h2>
+<h2>@ViewData["Title"]</h2>
 
 <form asp-controller="Account" asp-action="Register" asp-route-returnurl="@ViewData["ReturnUrl"]" method="post" class="form-horizontal">
-    <h4>Create a new account.</h4>
+    <h4>Yeni Hesap Oluştur</h4>
     <hr />
-    <div asp-validation-summary="All" class="text-danger"></div>
     <div class="form-group">
         <label asp-for="Email" class="col-md-2 control-label"></label>
         <div class="col-md-10">
             <input asp-for="Email" class="form-control" />
             <span asp-validation-for="Email" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="form-group">
+        <label asp-for="FullName" class="col-md-2 control-label"></label>
+        <div class="col-md-10">
+            <input asp-for="FullName" class="form-control" />
+            <span asp-validation-for="FullName" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="form-group">
+        <label asp-for="ProductCount" class="col-md-2 control-label"></label>
+        <div class="col-md-10">
+            <input asp-for="ProductCount" class="form-control" />
+            <span asp-validation-for="ProductCount" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="form-group">
+        <label asp-for="CampaignCount" class="col-md-2 control-label"></label>
+        <div class="col-md-10">
+            <input asp-for="CampaignCount" class="form-control" />
+            <span asp-validation-for="CampaignCount" class="text-danger"></span>
         </div>
     </div>
     <div class="form-group">
@@ -30,12 +50,74 @@
             <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
         </div>
     </div>
+    <div class="form-group" id="wrapper" style="margin-top:20px;">
+        <label asp-for="Logo" class="col-md-2 control-label"></label>
+        <div class="col-md-10">
+            <input id="fileUpload" asp-for="Logo" class="form-control file" type="file" accept="image/gif,image/jpg,image/jpeg,image/png" />
+            @Html.ValidationMessage("LogoUpload", new { @class = "text-danger" })
+            <span asp-validation-for="Logo" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-2">
+
+        </div>
+        <div class="col-md-10" id="image-holder">
+
+        </div>
+    </div>
     <div class="form-group">
         <div class="col-md-offset-2 col-md-10">
-            <button type="submit" class="btn btn-default">Register</button>
+            <button type="submit" class="btn btn-primary">Kaydol</button>
         </div>
     </div>
 </form>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+
+<style type="text/css">
+    .thumb-image {
+        float: left;
+        width: 200px;
+        height:300px;
+        position: relative;
+        padding: 5px;
+    }
+</style>
+
+<script>
+$(document).ready(function() {
+        $("#fileUpload").on('change', function() {
+          //Get count of selected files
+          var countFiles = $(this)[0].files.length;
+          var imgPath = $(this)[0].value;
+          var extn = imgPath.substring(imgPath.lastIndexOf('.') + 1).toLowerCase();
+          var image_holder = $("#image-holder");
+          image_holder.empty();
+          //if (extn == "gif" || extn == "png" || extn == "jpg" || extn == "jpeg") {
+            //if (typeof(FileReader) != "undefined") {
+              //loop for each file selected for uploaded.
+              for (var i = 0; i < countFiles; i++)
+              {
+                var reader = new FileReader();
+                reader.onload = function(e) {
+                  $("<img />", {
+                    "src": e.target.result,
+                    "class": "thumb-image"
+                  }).appendTo(image_holder);
+                }
+                image_holder.show();
+                reader.readAsDataURL($(this)[0].files[i]);
+              }
+          //  } else {
+          //    alert("Tarayıcınız dosya okumayı desteklemiyor.");
+          //  }
+          //} else {
+          //  alert("Lütfen 1 resim seçiniz.");
+          //}
+        });
+      });
+</script>
 
 @section Scripts {
     @{ await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
